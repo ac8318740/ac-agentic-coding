@@ -33,7 +33,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/ac8318740/agentic-retro.git",
-        "ref": "master"
+        "ref": "main"
       },
       "description": "Learns from finished coding sessions and proposes improvements to code clarity, agent setup, and the repo itself.",
       "repository": "https://github.com/ac8318740/agentic-retro"
