@@ -27,6 +27,16 @@
       },
       "description": "Local design loop – Claude writes HTML drafts, you click elements in a viewer to iterate.",
       "repository": "https://github.com/ac8318740/open-designer"
+    },
+    {
+      "name": "agentic-retro",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/ac8318740/agentic-retro.git",
+        "ref": "main"
+      },
+      "description": "Learns from finished coding sessions and proposes improvements to code clarity, agent setup, and the repo itself.",
+      "repository": "https://github.com/ac8318740/agentic-retro"
     }
   ]
 }
