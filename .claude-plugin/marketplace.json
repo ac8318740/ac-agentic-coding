@@ -37,6 +37,16 @@
       },
       "description": "Learns from finished coding sessions and proposes improvements to code clarity, agent setup, and the repo itself.",
       "repository": "https://github.com/ac8318740/agentic-retro"
+    },
+    {
+      "name": "sticky-prompt-line",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/ac8318740/sticky-prompt-line.git",
+        "ref": "main"
+      },
+      "description": "Shows the nearest off-screen user prompt as a sticky one-line marker in Pi's fullscreen transcript.",
+      "repository": "https://github.com/ac8318740/sticky-prompt-line"
     }
   ]
 }
