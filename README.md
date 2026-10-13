@@ -6,7 +6,7 @@ Plugins and Pi extensions for spec-driven development, design work, and agent er
 
 | Plugin or extension | Claude Code | Codex | Pi |
 | ------------------- | ----------- | ----- | -- |
-| [SpecHub](https://github.com/ac8318740/spechub) | ✓ | ✓ | ✓ |
+| [ACStack](https://github.com/ac8318740/acstack) | ✓ | ✓ | ✓ |
 | [open-designer](https://github.com/ac8318740/open-designer) | ✓ | ✓ | ✗ |
 | [agentic-retro](https://github.com/ac8318740/agentic-retro) | ✓ | ✓ | ✗ |
 | [sticky-prompt-line](https://github.com/ac8318740/sticky-prompt-line) | ✗ | ✗ | ✓ |
@@ -27,7 +27,7 @@ Install the marketplace once:
 Install any Claude Code plugin from this marketplace:
 
 ```text
-/plugin install spechub@ac-agentic-coding
+/plugin install acstack@ac-agentic-coding
 /plugin install open-designer@ac-agentic-coding
 /plugin install agentic-retro@ac-agentic-coding
 ```
@@ -45,7 +45,7 @@ codex plugin marketplace add ac8318740/ac-agentic-coding
 Install any Codex plugin from this marketplace:
 
 ```text
-codex plugin add spechub@ac-agentic-coding
+codex plugin add acstack@ac-agentic-coding
 codex plugin add open-designer@ac-agentic-coding
 codex plugin add agentic-retro@ac-agentic-coding
 ```

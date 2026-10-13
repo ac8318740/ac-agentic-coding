@@ -9,7 +9,7 @@ read `.claude-plugin/marketplace.json` natively.
 The plugins live in their own repositories and are referenced by URL, not
 bundled:
 
-- **SpecHub** – `ac8318740/spechub`
+- **ACStack** – `ac8318740/acstack`
 - **open-designer** – `ac8318740/open-designer`
 
 Both are also checked out here as git submodules, but that is purely a
@@ -21,7 +21,7 @@ development convenience. Installs resolve through the `url` sources in
 ```
 .claude-plugin/marketplace.json  – Marketplace registry (url sources)
 .gitmodules                      – Submodule references (dev convenience only)
-plugins/spechub/                 – Submodule: ac8318740/spechub
+plugins/spechub/                 – Submodule: ac8318740/acstack
 plugins/open-designer/           – Submodule: ac8318740/open-designer
 .claude/skills/commit/           – Dev skill: commit and push to one or both repos
 .claude/skills/sync-upstream/    – Dev skill: sync upstream workflow changes into SpecHub (gitignored)
