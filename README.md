@@ -9,6 +9,7 @@ with both Claude Code and Codex, which read the same marketplace manifest.
 |--------|-------------|
 | [SpecHub](https://github.com/ac8318740/spechub) | Spec-driven TDD workflow with a three-phase implementation pipeline |
 | [open-designer](https://github.com/ac8318740/open-designer) | Local design loop – Claude writes HTML drafts, you click elements in a viewer to iterate |
+| [agentic-retro](https://github.com/ac8318740/agentic-retro) | Learns from finished coding sessions and proposes improvements to code clarity, agent setup, and the repo itself |
 
 ## Claude Code
 
