@@ -9,14 +9,14 @@
   },
   "plugins": [
     {
-      "name": "spechub",
+      "name": "acstack",
       "source": {
         "source": "url",
-        "url": "https://github.com/ac8318740/spechub.git",
+        "url": "https://github.com/ac8318740/acstack.git",
         "ref": "main"
       },
       "description": "Spec-driven TDD workflow with strict orchestrator pattern and three-phase implementation pipeline (test-writer, task-executor, task-checker).",
-      "repository": "https://github.com/ac8318740/spechub"
+      "repository": "https://github.com/ac8318740/acstack"
     },
     {
       "name": "open-designer",
