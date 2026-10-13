@@ -6,26 +6,27 @@ A plugin marketplace named **ac-agentic-coding**, hosted at
 `ac8318740/ac-agentic-coding`. It serves both Claude Code and Codex, which each
 read `.claude-plugin/marketplace.json` natively.
 
-The plugins live in their own repositories and are referenced by URL, not
-bundled:
+The marketplace holds no plugin code. Each entry in `marketplace.json` points
+at the plugin's own GitHub repo (`source: url`, `ref: main`), and installs fetch
+from there:
 
 - **ACStack** – `ac8318740/acstack`
 - **open-designer** – `ac8318740/open-designer`
+- **agentic-retro** – `ac8318740/agentic-retro`
+- **sticky-prompt-line** – `ac8318740/sticky-prompt-line`
 
-Both are also checked out here as git submodules, but that is purely a
-development convenience. Installs resolve through the `url` sources in
-`marketplace.json`, so releasing a plugin never means touching this repo.
+Develop a plugin in its own repo, for example `ac8318740/acstack`. Commit and
+release there. Releasing a plugin never touches this repo.
 
 ## Repo Structure
 
 ```
 .claude-plugin/marketplace.json  – Marketplace registry (url sources)
-.gitmodules                      – Submodule references (dev convenience only)
-plugins/spechub/                 – Submodule: ac8318740/acstack
-plugins/open-designer/           – Submodule: ac8318740/open-designer
-.claude/skills/commit/           – Dev skill: commit and push to one or both repos
-.claude/skills/sync-upstream/    – Dev skill: sync upstream workflow changes into SpecHub (gitignored)
+README.md                        – Plugin list and install commands
 ```
+
+`plugins/` and `.claude/` are gitignored. A local clone under `plugins/` is a
+convenience for side-by-side work, never the source installs use.
 
 ## Writing Standards
 
@@ -36,23 +37,11 @@ All prose in this project – commit messages, READMEs, skill docs, comments –
 - **Concise.** No filler, no repetition, no marketing tone.
 - **Active voice.** "Add feature" not "Feature was added."
 
-## Working on SpecHub
-
-The plugin code at `plugins/spechub/` is a **git submodule**. It has its own repo, its own commits, and its own CLAUDE.md (which is the plugin's orchestrator instructions for end users – not development instructions).
-
-To make changes to SpecHub:
-1. Work inside `plugins/spechub/` – it's a full git repo
-2. Use `/commit` to commit and push (handles both repos automatically)
-
 ## Dev Skills
-
-### `/commit` – Commit and push
-
-Commits to spechub, the marketplace parent, or both. Auto-detects which repos have changes. Enforces writing standards on commit messages. See `.claude/skills/commit/SKILL.md`.
 
 ### `/sync-upstream` – Sync from upstream
 
-Pulls workflow changes from the upstream project into SpecHub. Diffs, classifies changes as generalizable vs project-specific, presents each for approval. This skill is gitignored – it's a development tool, not part of the published plugin.
+Pulls workflow changes from the upstream project into ACStack. Diffs, classifies changes as generalizable vs project-specific, presents each for approval. This skill is gitignored – it's a development tool, not part of the published plugin.
 
 ## Key Context
 
@@ -80,4 +69,4 @@ If you bump plugin.json and forget to republish to npm, users on `npx open-desig
 No repo-wide build/test/lint yet – skills and agents are markdown. Per-plugin commands:
 
 - open-designer repo: `npm run build:viewer`, `npm run sync-version`, `npm run release`.
-- spechub repo, `cli/`: `npm run build`, `npm test`, `npm run typecheck`. CI enforces that generated files are current.
+- acstack repo, `cli/`: `npm run build`, `npm test`, `npm run typecheck`. CI enforces that generated files are current.
