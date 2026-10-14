@@ -12,7 +12,7 @@ Plugins and Pi extensions for spec-driven development, design work, and agent er
 | [sticky-prompt-line](https://github.com/ac8318740/sticky-prompt-line) | ✗ | ✗ | ✓ |
 
 - Claude Code and Codex install Claude plugin packages from this marketplace
-- Pi installs Pi packages from its plugin manager
+- Pi installs Pi packages from npm with `pi install npm:<package>`
 - `sticky-prompt-line` is a Pi extension only
 - `open-designer` also ships `open-designer-viewer` for local browser previews
 
@@ -56,18 +56,15 @@ Codex prompts once to trust a plugin's hooks. SpecHub's hook injects its orchest
 
 ## Pi install
 
-Open the Pi plugin manager:
+Install both Pi extensions from npm:
 
 ```text
-/plugins
+pi install npm:pi-subagents
+pi install npm:acstack
+pi install npm:sticky-prompt-line
 ```
 
-Install both Pi extensions from the plugin manager:
-
-```text
-acstack
-sticky-prompt-line
-```
+`pi-subagents` provides the subagent runtime that ACStack uses.
 
 Pi cannot install the Claude Code or Codex plugin packages for `open-designer` or `agentic-retro`.
 
