@@ -8,11 +8,13 @@ Plugins and Pi extensions for spec-driven development, design work, and agent er
 | ------------------- | ----------- | ----- | -- |
 | [ACStack](https://github.com/ac8318740/acstack) | ✓ | ✓ | ✓ |
 | [open-designer](https://github.com/ac8318740/open-designer) | ✓ | ✓ | ✗ |
-| [agentic-retro](https://github.com/ac8318740/agentic-retro) | ✓ | ✓ | ✗ |
+| [agentic-retro](https://github.com/ac8318740/agentic-retro) | ✓ | ✓ | ✓ |
 | [sticky-prompt-line](https://github.com/ac8318740/sticky-prompt-line) | ✗ | ✗ | ✓ |
 
-- Claude Code and Codex install Claude plugin packages from this marketplace
-- Pi installs Pi packages from npm with `pi install npm:<package>`
+The table shows host support. Each host uses its own install route:
+
+- Claude Code and Codex install plugin packages from this marketplace
+- Pi installs native Pi packages from npm with `pi install npm:<package>`, not the marketplace plugin packages
 - `sticky-prompt-line` is a Pi extension only
 - `open-designer` also ships `open-designer-viewer` for local browser previews
 
@@ -52,22 +54,32 @@ codex plugin add agentic-retro@ac-agentic-coding
 
 Codex cannot install `sticky-prompt-line`.
 
-Codex prompts once to trust a plugin's hooks. SpecHub's hook injects its orchestrator instructions and installs its subagent definitions. Declining the prompt leaves SpecHub mostly inactive.
+Codex prompts once to trust a plugin's hooks. ACStack's hook injects its orchestrator instructions and installs its subagent definitions. Declining the prompt leaves ACStack mostly inactive.
 
 ## Pi install
 
-Install both Pi extensions from npm:
+Install the Pi packages you want from npm:
 
 ```text
-pi install npm:pi-subagents
+pi install npm:@tintinweb/pi-subagents
 pi install npm:acstack
+pi install npm:agentic-retro
 pi install npm:sticky-prompt-line
 ```
 
-`pi-subagents` provides the subagent runtime that ACStack uses.
+`@tintinweb/pi-subagents` provides the subagent runtime for ACStack. The other packages do not need it.
 
-Pi cannot install the Claude Code or Codex plugin packages for `open-designer` or `agentic-retro`.
+The native `agentic-retro` package includes its CLI. Do not also run the legacy `agentic-retro install-pi` installer.
 
-## Notes
+`open-designer` does not support Pi.
 
-Each plugin lives in its own repository. The marketplace manifest references each plugin by URL.
+## Setup details
+
+Each plugin lives in its own repository. Follow its guide for setup and requirements:
+
+- [ACStack](https://github.com/ac8318740/acstack#1-quickstart)
+- [open-designer](https://github.com/ac8318740/open-designer#readme)
+- [agentic-retro](https://github.com/ac8318740/agentic-retro#install)
+- [sticky-prompt-line](https://github.com/ac8318740/sticky-prompt-line#readme)
+
+The marketplace manifest references each plugin by URL.
