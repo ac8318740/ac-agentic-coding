@@ -72,7 +72,7 @@ pi install npm:sticky-prompt-line
 
 The native `agentic-retro` package includes its CLI. Do not also run the legacy `agentic-retro install-pi` installer.
 
-Open Designer's Pi commands require `open-designer-viewer` v0.7.8 or later. The release needs npm approval before that version becomes available; v0.7.7 is viewer-only. Once installed, start with `/open-designer:design-system`.
+The `open-designer-viewer` package includes the viewer and native Pi workflows. Restart Pi or run `/reload`, then start with `/open-designer:design-system`.
 
 ## Setup details
 
