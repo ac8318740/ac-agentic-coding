@@ -7,7 +7,7 @@ Plugins and Pi extensions for spec-driven development, design work, and agent er
 | Plugin or extension | Claude Code | Codex | Pi |
 | ------------------- | ----------- | ----- | -- |
 | [ACStack](https://github.com/ac8318740/acstack) | ✓ | ✓ | ✓ |
-| [open-designer](https://github.com/ac8318740/open-designer) | ✓ | ✓ | ✗ |
+| [open-designer](https://github.com/ac8318740/open-designer) | ✓ | ✓ | ✓ |
 | [agentic-retro](https://github.com/ac8318740/agentic-retro) | ✓ | ✓ | ✓ |
 | [sticky-prompt-line](https://github.com/ac8318740/sticky-prompt-line) | ✗ | ✗ | ✓ |
 
@@ -63,6 +63,7 @@ Install the Pi packages you want from npm:
 ```text
 pi install npm:@tintinweb/pi-subagents
 pi install npm:acstack
+pi install npm:open-designer-viewer
 pi install npm:agentic-retro
 pi install npm:sticky-prompt-line
 ```
@@ -71,7 +72,7 @@ pi install npm:sticky-prompt-line
 
 The native `agentic-retro` package includes its CLI. Do not also run the legacy `agentic-retro install-pi` installer.
 
-`open-designer` does not support Pi.
+Open Designer's Pi commands require `open-designer-viewer` v0.7.8 or later. The release needs npm approval before that version becomes available; v0.7.7 is viewer-only. Once installed, start with `/open-designer:design-system`.
 
 ## Setup details
 
