@@ -7,12 +7,14 @@ Plugins and Pi extensions for spec-driven development, design work, and agent er
 | Plugin or extension | Claude Code | Codex | Pi |
 | ------------------- | ----------- | ----- | -- |
 | [ACStack](https://github.com/ac8318740/acstack) | Yes | Yes | Yes |
-| [open-designer](https://github.com/ac8318740/open-designer) | Yes | Not listed | Yes |
-| [agentic-retro](https://github.com/ac8318740/agentic-retro) | Yes | Not listed | Yes |
+| [open-designer](https://github.com/ac8318740/open-designer) | Yes | Yes | Yes |
+| [agentic-retro](https://github.com/ac8318740/agentic-retro) | Yes | Yes | Yes |
 | [sticky-prompt-line](https://github.com/ac8318740/sticky-prompt-line) | No | No | Yes |
 | [ac-teams](https://github.com/ac8318740/ac-teams) | No | No | Yes (Linux) |
 
-Claude Code and Codex use separate catalogs in this repository. The native Codex catalog currently lists ACStack only. Codex compatibility for the other plugins has not been verified here; follow their own setup guides.
+Claude Code and Codex use separate catalogs in this repository. Both install ACStack, open-designer, and agentic-retro from npm. GitHub repository links identify the source projects; the catalog's `source` field controls installation.
+
+agentic-retro requires version 0.1.10 or later for npm plugin hooks. Version 0.1.9 includes skills and the CLI but omits automatic session capture and startup notices. Publish and verify the compatible release before deploying these catalog changes.
 
 Pi installs native packages from npm with `pi install npm:<package>`. `sticky-prompt-line` and `ac-teams` are Pi-only extensions. `open-designer` also ships `open-designer-viewer` for local browser previews.
 
@@ -32,7 +34,7 @@ Install any Claude Code plugin from this marketplace:
 /plugin install agentic-retro@ac-agentic-coding
 ```
 
-ACStack installs from the `acstack` npm package at `latest`. It includes the CLI runtime; npm must be available. Claude Code cannot install `sticky-prompt-line` or `ac-teams`.
+The catalogs select `latest` from `acstack`, `open-designer-viewer`, and `agentic-retro`. npm must be available. ACStack and agentic-retro include their CLI runtimes; open-designer includes its viewer launcher. Claude Code cannot install `sticky-prompt-line` or `ac-teams`.
 
 ## Codex install
 
@@ -42,17 +44,23 @@ Install the marketplace once:
 codex plugin marketplace add ac8318740/ac-agentic-coding
 ```
 
-Install ACStack from its npm package:
+Install the plugins you want:
 
 ```text
 codex plugin add acstack@ac-agentic-coding
+codex plugin add open-designer@ac-agentic-coding
+codex plugin add agentic-retro@ac-agentic-coding
 ```
 
-This native catalog was checked with Codex CLI 0.163.0. npm must be available. Codex downloads the package with lifecycle scripts disabled; the published package includes the CLI runtime.
+The native catalog uses Codex CLI's npm source support, checked with version 0.163.0. npm must be available. Codex downloads packages with lifecycle scripts disabled, so published packages must include their runtime assets.
 
 Enable and trust ACStack's hooks when Codex asks. Its SessionStart hooks inject orchestrator instructions and install generated subagent definitions into `$CODEX_HOME/agents` (default `~/.codex/agents`), preserving user-owned definitions. Start a fresh session after installation so Codex discovers the agents. Declining hooks leaves this startup behavior inactive.
 
-Native npm catalog parsing and installation were checked with a locally packed artifact. Trusted hook dispatch inside a live Codex session and named-agent delegation still need a manual check.
+Open-designer exposes `design-system`, `design`, and `design-integrate`. Follow its guide to launch the local viewer and configure optional integrations.
+
+Agentic-retro exposes `setup`, `retro`, `review`, and `run`. Trust its session hooks to enable automatic capture and startup notices. Follow its setup guide before enabling background runs.
+
+ACStack's published version 0.57.10 was checked with trusted native hook dispatch, complete startup instructions, and named-agent delegation. Before changing either catalog's npm source, verify the actual published package; skill discovery alone does not prove its hooks or runtime work.
 
 ## Pi install
 
@@ -83,9 +91,11 @@ Each plugin lives in its own repository. Follow its guide for setup and requirem
 - [sticky-prompt-line](https://github.com/ac8318740/sticky-prompt-line#readme)
 - [ac-teams](https://github.com/ac8318740/ac-teams#readme)
 
-## ACStack npm rollout
+## npm release order
 
-The catalogs select `acstack@latest`. Release in this order:
+Publish and verify each plugin's complete npm package before deploying a catalog change. agentic-retro 0.1.10 is the minimum compatible npm plugin release; confirm it is public and selected by `latest` first. Check registry installation, packaged CLI commands, and trusted hooks in both hosts. Never treat a Git checkout or local tarball as proof of the public artifact.
+
+ACStack's bundle-removal migration follows this order:
 
 1. In ACStack, dispatch `gh workflow run tag-release.yml --ref <release-branch>` on the reviewed branch before promoting bundle removal to `main`. Branch dispatches stage the tested npm tarball without a Git tag. Approve the staged package on npmjs.com, then verify registry installation, CLI startup, and trusted hooks on each host.
 2. Publish these marketplace changes only after the package is available. Keep the marketplace name and `acstack@ac-agentic-coding` install identity unchanged.
