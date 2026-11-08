@@ -16,6 +16,32 @@
         "authentication": "ON_INSTALL"
       },
       "category": "Productivity"
+    },
+    {
+      "name": "open-designer",
+      "source": {
+        "source": "npm",
+        "package": "open-designer-viewer",
+        "version": "latest"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Design"
+    },
+    {
+      "name": "agentic-retro",
+      "source": {
+        "source": "npm",
+        "package": "agentic-retro",
+        "version": "latest"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
     }
   ]
 }
