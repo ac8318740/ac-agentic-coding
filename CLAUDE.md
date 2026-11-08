@@ -9,22 +9,25 @@ catalogs and documents native Pi installs.
 The marketplace holds no plugin code. Claude Code reads
 `.claude-plugin/marketplace.json`; Codex reads `.agents/plugins/marketplace.json`.
 
-- **ACStack** uses npm package `acstack` at `latest` in both catalogs.
-- **open-designer**, **agentic-retro**, and **sticky-prompt-line** retain their
-  existing Git URL sources in the Claude catalog. The native Codex catalog lists
-  ACStack only. `sticky-prompt-line` is Pi-only despite its retained legacy entry.
+- **ACStack**, **open-designer**, and **agentic-retro** use npm packages
+  `acstack`, `open-designer-viewer`, and `agentic-retro` at `latest` in both catalogs.
+- **sticky-prompt-line** is Pi-only despite its retained legacy Git entry in the
+  Claude catalog. It does not belong in the Codex catalog.
 - **ac-teams** is a Pi-only npm package listed in the README, not either catalog.
 
-Develop and release each plugin in its own repository. For ACStack, publish and
-verify npm first, publish the marketplace switch second, and remove the old
-tracked source bundle last. Every npm tarball must continue to include the built
-CLI. Do not change marketplace identity or install commands during this rollout.
+Develop and release each plugin in its own repository. Publish and verify the
+complete npm artifact before deploying its catalog changes. agentic-retro needs
+0.1.10 or later; 0.1.9 omits its plugin hooks. Verify that `latest` selects the
+compatible release before deployment. For ACStack's bundle-removal migration,
+publish the marketplace switch before removing the tracked source bundle.
+Tarballs must include their runtime assets. Preserve marketplace identity and
+install commands.
 
 ## Repo Structure
 
 ```
 .claude-plugin/marketplace.json   – Claude registry (npm and Git URL sources)
-.agents/plugins/marketplace.json  – Native Codex registry (ACStack via npm)
+.agents/plugins/marketplace.json  – Native Codex registry (three npm plugins)
 README.md                         – Plugin list, install commands, and rollout
 tests/marketplace.test.mjs         – Static catalog checks
 ```
