@@ -3,26 +3,30 @@
 ## What This Repo Is
 
 A plugin marketplace named **ac-agentic-coding**, hosted at
-`ac8318740/ac-agentic-coding`. It serves both Claude Code and Codex, which each
-read `.claude-plugin/marketplace.json` natively.
+`ac8318740/ac-agentic-coding`. It serves Claude Code and Codex through separate
+catalogs and documents native Pi installs.
 
-The marketplace holds no plugin code. Each entry in `marketplace.json` points
-at the plugin's own GitHub repo (`source: url`, `ref: main`), and installs fetch
-from there:
+The marketplace holds no plugin code. Claude Code reads
+`.claude-plugin/marketplace.json`; Codex reads `.agents/plugins/marketplace.json`.
 
-- **ACStack** – `ac8318740/acstack`
-- **open-designer** – `ac8318740/open-designer`
-- **agentic-retro** – `ac8318740/agentic-retro`
-- **sticky-prompt-line** – `ac8318740/sticky-prompt-line`
+- **ACStack** uses npm package `acstack` at `latest` in both catalogs.
+- **open-designer**, **agentic-retro**, and **sticky-prompt-line** retain their
+  existing Git URL sources in the Claude catalog. The native Codex catalog lists
+  ACStack only. `sticky-prompt-line` is Pi-only despite its retained legacy entry.
+- **ac-teams** is a Pi-only npm package listed in the README, not either catalog.
 
-Develop a plugin in its own repo, for example `ac8318740/acstack`. Commit and
-release there. Releasing a plugin never touches this repo.
+Develop and release each plugin in its own repository. For ACStack, publish and
+verify npm first, publish the marketplace switch second, and remove the old
+tracked source bundle last. Every npm tarball must continue to include the built
+CLI. Do not change marketplace identity or install commands during this rollout.
 
 ## Repo Structure
 
 ```
-.claude-plugin/marketplace.json  – Marketplace registry (url sources)
-README.md                        – Plugin list and install commands
+.claude-plugin/marketplace.json   – Claude registry (npm and Git URL sources)
+.agents/plugins/marketplace.json  – Native Codex registry (ACStack via npm)
+README.md                         – Plugin list, install commands, and rollout
+tests/marketplace.test.mjs         – Static catalog checks
 ```
 
 `plugins/` and `.claude/` are gitignored. A local clone under `plugins/` is a
@@ -66,7 +70,10 @@ If you bump plugin.json and forget to republish to npm, users on `npx open-desig
 
 ## Commands
 
-No repo-wide build/test/lint yet – skills and agents are markdown. Per-plugin commands:
+Marketplace checks: `node --test tests/marketplace.test.mjs` and
+`claude plugin validate .claude-plugin/marketplace.json --strict`. The README
+shows isolated Codex catalog validation. There is no repo-wide build or lint.
+Per-plugin commands:
 
 - open-designer repo: `npm run build:viewer`, `npm run sync-version`, `npm run release`.
-- acstack repo, `cli/`: `npm run build`, `npm test`, `npm run typecheck`. CI enforces that generated files are current.
+- acstack repo: use its release and packaging commands to build and validate the npm artifact. Never remove the CLI from the tarball when removing tracked generated files.

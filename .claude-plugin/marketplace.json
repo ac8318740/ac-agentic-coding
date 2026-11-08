@@ -11,11 +11,11 @@
     {
       "name": "acstack",
       "source": {
-        "source": "url",
-        "url": "https://github.com/ac8318740/acstack.git",
-        "ref": "main"
+        "source": "npm",
+        "package": "acstack",
+        "version": "latest"
       },
-      "description": "Spec-driven TDD workflow with strict orchestrator pattern and three-phase implementation pipeline (test-writer, task-executor, task-checker).",
+      "description": "Adaptive planning, implementation, and verification with shared skills, orchestrator instructions, and agents.",
       "repository": "https://github.com/ac8318740/acstack"
     },
     {
