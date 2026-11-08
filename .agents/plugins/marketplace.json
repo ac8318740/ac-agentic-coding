@@ -1,0 +1,21 @@
+{
+  "name": "ac-agentic-coding",
+  "interface": {
+    "displayName": "AC's Agentic Coding Marketplace"
+  },
+  "plugins": [
+    {
+      "name": "acstack",
+      "source": {
+        "source": "npm",
+        "package": "acstack",
+        "version": "latest"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -11,11 +11,9 @@ node_modules/
 # open-designer test data (HTML drafts, init files generated while exercising the plugin locally)
 .open-designer/
 
-# Local clones of the plugins this marketplace points at. Nothing under here is
-# tracked: marketplace.json fetches each plugin from its own GitHub repo, so a
-# checkout here is a convenience for working on them side by side, never the
-# source the marketplace serves.
-plugins/
+# Local plugin clones are development conveniences, not marketplace sources.
+# Anchor this rule so the native .agents/plugins catalog stays trackable.
+/plugins/
 
 # Reference files
 reference/
